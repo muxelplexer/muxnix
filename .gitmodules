@@ -1,0 +1,12 @@
+[submodule "distro/bitbake"]
+	path = distro/bitbake
+	url = git://git.openembedded.org/bitbake
+[submodule "distro/layers/openembedded-core"]
+	path = distro/layers/openembedded-core
+	url = git://git.openembedded.org/openembedded-core
+[submodule "distro/layers/meta-rockchip"]
+	path = distro/layers/meta-rockchip
+	url = git://git.yoctoproject.org/meta-rockchip
+[submodule "distro/layers/meta-arm"]
+	path = distro/layers/meta-arm
+	url = git://git.yoctoproject.org/meta-arm
