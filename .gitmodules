@@ -6,7 +6,7 @@
 	url = git://git.openembedded.org/openembedded-core
 [submodule "distro/layers/meta-rockchip"]
 	path = distro/layers/meta-rockchip
-	url = git://git.yoctoproject.org/meta-rockchip
+	url = git@github.com:muxelplexer/meta-rockchip.git
 [submodule "distro/layers/meta-arm"]
 	path = distro/layers/meta-arm
 	url = git://git.yoctoproject.org/meta-arm
