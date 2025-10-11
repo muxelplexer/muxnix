@@ -10,3 +10,6 @@
 [submodule "distro/layers/meta-arm"]
 	path = distro/layers/meta-arm
 	url = git://git.yoctoproject.org/meta-arm
+[submodule "distro/layers/meta-openembedded"]
+	path = distro/layers/meta-openembedded
+	url = git://git.openembedded.org/meta-openembedded
