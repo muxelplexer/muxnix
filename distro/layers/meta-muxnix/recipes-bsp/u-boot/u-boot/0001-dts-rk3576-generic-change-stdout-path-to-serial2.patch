@@ -1,0 +1,26 @@
+From ff514b1ad5aba08da5e669e4a7282634710de55e Mon Sep 17 00:00:00 2001
+From: Sebastian Muxel <sebastian@muxel.dev>
+Date: Sat, 11 Oct 2025 22:59:26 +0200
+Subject: [PATCH] dts: rk3576-generic: change stdout path to serial2
+
+This is because the Luckfox Omni3576 board i have has the most stupid
+debug header ever.
+
+Signed-off-by: Sebastian Muxel <sebastian@muxel.dev>
+---
+ arch/arm/dts/rk3576-generic.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/arm/dts/rk3576-generic.dts b/arch/arm/dts/rk3576-generic.dts
+index 123be5378d9..f8e09c336eb 100644
+--- a/arch/arm/dts/rk3576-generic.dts
++++ b/arch/arm/dts/rk3576-generic.dts
+@@ -18,7 +18,7 @@
+ 	};
+ 
+ 	chosen {
+-		stdout-path = "serial0:1500000n8";
++		stdout-path = "serial2:1500000n8";
+ 	};
+ };
+ 
