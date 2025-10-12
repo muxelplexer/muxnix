@@ -13,3 +13,6 @@
 [submodule "distro/layers/meta-openembedded"]
 	path = distro/layers/meta-openembedded
 	url = git://git.openembedded.org/meta-openembedded
+[submodule "distro/layers/meta-rockchip-jeffy"]
+	path = distro/layers/meta-rockchip-jeffy
+	url = https://github.com/JeffyCN/meta-rockchip.git
