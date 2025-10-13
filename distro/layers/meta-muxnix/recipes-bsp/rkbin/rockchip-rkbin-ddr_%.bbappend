@@ -1,0 +1,2 @@
+FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
+RKBIN_DDR_RECONFIGURE = "1"
