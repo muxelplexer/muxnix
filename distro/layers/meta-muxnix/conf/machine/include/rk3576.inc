@@ -9,15 +9,12 @@ require conf/machine/include/rockchip-defaults.inc
 require conf/machine/include/arm/armv8a/tune-cortexa72-cortexa53.inc
 require conf/machine/include/rockchip-wic.inc
 
-SERIAL_CONSOLES = "115200;ttyS0"
 PREFERRED_PROVIDER_trusted-firmware-a = "rockchip-rkbin-tf-a"
 PREFERRED_PROVIDER_optee-os = "rockchip-rkbin-optee-os"
 
 KBUILD_DEFCONFIG  ?= "defconfig"
-KERNEL_DEVICETREE ?= "rockchip/rk3576-luckfox-omni3576.dtb"
-UBOOT_MACHINE     ?= "generic-rk3576_defconfig"
-
 KERNEL_FEATURES:append:rk3576 = " bsp/rockchip/remove-non-rockchip-arch-arm64.scc"
+UBOOT_MACHINE     ?= "generic-rk3576_defconfig"
 
 UBOOT_SUFFIX ?= "itb"
 UBOOT_ENTRYPOINT ?= "0x48000000"
