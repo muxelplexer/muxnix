@@ -1,0 +1,23 @@
+From d0d71632fab8a4f37bc393902de9b43daaefaee1 Mon Sep 17 00:00:00 2001
+From: Sebastian Muxel <sebastian@muxel.dev>
+Date: Tue, 14 Oct 2025 20:17:04 +0200
+Subject: [PATCH] dts: rk3576: change generic dts to `genetic-u-boot`
+
+Signed-off-by: Sebastian Muxel <sebastian@muxel.dev>
+---
+ arch/arm/dts/rk3576-generic.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/arm/dts/rk3576-generic.dts b/arch/arm/dts/rk3576-generic.dts
+index f8e09c336eb..1b91b58b199 100644
+--- a/arch/arm/dts/rk3576-generic.dts
++++ b/arch/arm/dts/rk3576-generic.dts
+@@ -6,7 +6,7 @@
+ /dts-v1/;
+ 
+ #include <dt-bindings/gpio/gpio.h>
+-#include "rk3576.dtsi"
++#include "rk3576-generic-u-boot.dtsi"
+ 
+ / {
+ 	model = "Generic RK3576";

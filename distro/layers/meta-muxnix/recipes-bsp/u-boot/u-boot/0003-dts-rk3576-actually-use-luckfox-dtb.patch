@@ -1,0 +1,23 @@
+From edd427aae91f0864c82c572b8dd94afffdd41760 Mon Sep 17 00:00:00 2001
+From: Sebastian Muxel <sebastian@muxel.dev>
+Date: Thu, 16 Oct 2025 15:51:46 +0200
+Subject: [PATCH] dts: rk3576: actually use luckfox dtb
+
+Signed-off-by: Sebastian Muxel <sebastian@muxel.dev>
+---
+ configs/generic-rk3576_defconfig | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/configs/generic-rk3576_defconfig b/configs/generic-rk3576_defconfig
+index 59135a15018..07a34999367 100644
+--- a/configs/generic-rk3576_defconfig
++++ b/configs/generic-rk3576_defconfig
+@@ -2,7 +2,7 @@ CONFIG_ARM=y
+ CONFIG_SKIP_LOWLEVEL_INIT=y
+ CONFIG_COUNTER_FREQUENCY=24000000
+ CONFIG_ARCH_ROCKCHIP=y
+-CONFIG_DEFAULT_DEVICE_TREE="rk3576-generic"
++CONFIG_DEFAULT_DEVICE_TREE="rk3576-luckfox-omi3576"
+ CONFIG_ROCKCHIP_RK3576=y
+ CONFIG_SYS_LOAD_ADDR=0x40c00800
+ CONFIG_DEBUG_UART_BASE=0x2AD40000
