@@ -8,14 +8,7 @@ steps:
   - name: build-yocto
     image: muxelplexer/build-images
     pull: true
+    volumes:
+      - /etc/woodpecker/sstate-cache/:/workdir/build/sstate-cache/
     commands:
       - ./scripts/ci_build.sh
-
-  - name: save-sstate-cache
-    image: alpine:latest
-    pull: true
-    volumes:
-      - /etc/woodpecker/sstate-cache/:/workdir/sstate-cache/
-    commands:
-      - rm -rf /workdir/sstate-cache/*
-      - cp -r -p /workdir/muxnix/build/sstate-cache/* /workdir/sstate-cache/
