@@ -1,0 +1,22 @@
+From 2334ccda7d3b9ec3d22d7896213d33042c41e13f Mon Sep 17 00:00:00 2001
+From: OpenEmbedded <oe.patch@oe>
+Date: Wed, 22 Oct 2025 02:30:24 +0200
+Subject: [PATCH] dts: luckfox-omni3576: remove sqe support from mmc
+
+Signed-off-by: OpenEmbedded <oe.patch@oe>
+---
+ arch/arm64/boot/dts/rockchip/rk3576-luckfox-omni3576.dts | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk3576-luckfox-omni3576.dts b/arch/arm64/boot/dts/rockchip/rk3576-luckfox-omni3576.dts
+index 04b24c260310..39c963a9cb5a 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3576-luckfox-omni3576.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3576-luckfox-omni3576.dts
+@@ -89,6 +89,7 @@ &sdmmc {
+ 	vmmc-supply = <&vcc_3v3_s3>;
+ 	vqmmc-supply = <&vccio_sd_s0>;
+ 	status = "okay";
++	/delete-property/ supports-cqe;
+ };
+ 
+ 
