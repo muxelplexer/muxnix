@@ -1,0 +1,15 @@
+[Unit]
+Description=Android Debug Bridge
+
+[Service]
+ExecStartPre=/usr/bin/android-gadget-setup
+ExecStartPost=/usr/bin/android-gadget-start
+ExecStopPost=/usr/bin/android-gadget-cleanup
+Environment="ADB_SERIAL=123456789ABCDEF"
+Environment="ADB_MANUFACTURER=Rockchip"
+Environment="ADB_MODEL=RK3xxx"
+Environment="ADB_VENDOR=0x2207"
+Environment="ADB_PRODUCT=0x0006"
+
+[Install]
+WantedBy=multi-user.target

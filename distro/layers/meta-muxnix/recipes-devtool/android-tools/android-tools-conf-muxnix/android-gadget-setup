@@ -1,0 +1,25 @@
+#!/bin/sh
+
+[ ! -e /dev/pts ] && mkdir -p /dev/pts
+[ ! -e /dev/pts/0 ] && mount devpts /dev/pts -t devpts
+
+#below are now needed in order to use FunctionFS for ADB, tested to work with 3.4+ kernels
+if grep -q functionfs /proc/filesystems; then
+    mkdir -p /dev/usb-ffs/adb
+    mount -t functionfs adb /dev/usb-ffs/adb
+    #android-gadget-setup doesn't provide below 2 and without them it won't work, so we provide them here.
+    echo adb > /sys/class/android_usb/android0/f_ffs/aliases
+    echo ffs > /sys/class/android_usb/android0/functions
+fi
+
+echo $ADB_SERIAL > /sys/class/android_usb/android0/iSerial
+echo $ADB_MANUFACTURER > /sys/class/android_usb/android0/iManufacturer
+echo $ADB_MODEL > /sys/class/android_usb/android0/iProduct
+
+echo "0" > /sys/class/android_usb/android0/enable
+echo $ADB_VENDOR > /sys/class/android_usb/android0/idVendor
+echo $ADB_PRODUCT > /sys/class/android_usb/android0/idProduct
+echo "adb" > /sys/class/android_usb/android0/functions
+echo "1" >  /sys/class/android_usb/android0/enable
+
+sleep 4
