@@ -1,1 +1,2 @@
-PACKAGECONFIG:remove = "nss-resolve networkd randomseed resolved timedatectl timedated timesyncd backlight"
+PACKAGECONFIG:remove = " randomseed nss-mymachines machined backlight"
+PACKAGECONFIG:append = " coredump hostnamed rfkill"
