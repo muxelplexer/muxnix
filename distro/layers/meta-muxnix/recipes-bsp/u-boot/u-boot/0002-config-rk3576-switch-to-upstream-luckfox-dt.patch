@@ -1,0 +1,23 @@
+From 7cc8db97a74b39c090e0e3d2ce45a42ef75932eb Mon Sep 17 00:00:00 2001
+From: Sebastian Muxel <sebastian@muxel.dev>
+Date: Wed, 22 Oct 2025 02:50:05 +0200
+Subject: [PATCH] config: rk3576: switch to upstream luckfox dt
+
+Signed-off-by: Sebastian Muxel <sebastian@muxel.dev>
+---
+ configs/generic-rk3576_defconfig | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/configs/generic-rk3576_defconfig b/configs/generic-rk3576_defconfig
+index 260ef43f492..ab215560cdb 100644
+--- a/configs/generic-rk3576_defconfig
++++ b/configs/generic-rk3576_defconfig
+@@ -2,7 +2,7 @@ CONFIG_ARM=y
+ CONFIG_SKIP_LOWLEVEL_INIT=y
+ CONFIG_COUNTER_FREQUENCY=24000000
+ CONFIG_ARCH_ROCKCHIP=y
+-CONFIG_DEFAULT_DEVICE_TREE="rk3576-generic"
++CONFIG_DEFAULT_DEVICE_TREE="rockchip/rk3576-luckfox-omni3576"
+ CONFIG_ROCKCHIP_RK3576=y
+ CONFIG_SYS_LOAD_ADDR=0x40c00800
+ CONFIG_DEBUG_UART_BASE=0x2AD40000
