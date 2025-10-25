@@ -11,16 +11,15 @@ S = "${UNPACKDIR}/${PN}-${PV}"
 #  - aic8800D80
 #  - aic8800D80X2
 #  - aic8800DC
-CHIPSET ?= "aic8800"
+CHIPSET ?= "aic8800D80"
 do_compile[noexec] = "1"
 do_install() {
-    install -d ${D}/${nonarch_base_libdir}/firmware
-    install -d ${D}/${nonarch_base_libdir}/firmware/${CHIPSET}
-    install -m 755 ${S}/src/SDIO/driver_fw/fw/${CHIPSET}/*.bin ${D}/${nonarch_base_libdir}/firmware/${CHIPSET}
-    install -m 644 ${S}/src/SDIO/driver_fw/fw/${CHIPSET}/*.txt ${D}/${nonarch_base_libdir}/firmware/${CHIPSET}
+    install -d ${D}/${nonarch_base_libdir}/firmware/aic8800_fw/SDIO/${CHIPSET}
+    install -m 755 ${S}/src/SDIO/driver_fw/fw/${CHIPSET}/*.bin ${D}/${nonarch_base_libdir}/firmware/aic8800_fw/SDIO/${CHIPSET}
+    install -m 644 ${S}/src/SDIO/driver_fw/fw/${CHIPSET}/*.txt ${D}/${nonarch_base_libdir}/firmware/aic8800_fw/SDIO/${CHIPSET}
 }
 
-FILES:${PN} = "${nonarch_base_libdir}/firmware/${CHIPSET}/*"
+FILES:${PN} = "${nonarch_base_libdir}/firmware/aic8800_fw/SDIO/${CHIPSET}/*"
 INHIBIT_PACKAGE_STRIP = "1"
 INHIBIT_SYSROOT_STRIP = "1"
 RPROVIDES:${PN} = "aic8800-firmware"
