@@ -1,25 +1,33 @@
 #!/bin/sh
 
-[ ! -e /dev/pts ] && mkdir -p /dev/pts
-[ ! -e /dev/pts/0 ] && mount devpts /dev/pts -t devpts
+set -e
 
-#below are now needed in order to use FunctionFS for ADB, tested to work with 3.4+ kernels
-if grep -q functionfs /proc/filesystems; then
-    mkdir -p /dev/usb-ffs/adb
-    mount -t functionfs adb /dev/usb-ffs/adb
-    #android-gadget-setup doesn't provide below 2 and without them it won't work, so we provide them here.
-    echo adb > /sys/class/android_usb/android0/f_ffs/aliases
-    echo ffs > /sys/class/android_usb/android0/functions
-fi
+manufacturer="$ADB_MANUFACTURER"
+model="$ADB_MODEL"
+serial="$ADB_SERIAL"
+vendor="$ADB_VENDOR"
+product="$ADB_PRODUCT"
 
-echo $ADB_SERIAL > /sys/class/android_usb/android0/iSerial
-echo $ADB_MANUFACTURER > /sys/class/android_usb/android0/iManufacturer
-echo $ADB_MODEL > /sys/class/android_usb/android0/iProduct
+[ -d /sys/kernel/config/usb_gadget ] || modprobe libcomposite
 
-echo "0" > /sys/class/android_usb/android0/enable
-echo $ADB_VENDOR > /sys/class/android_usb/android0/idVendor
-echo $ADB_PRODUCT > /sys/class/android_usb/android0/idProduct
-echo "adb" > /sys/class/android_usb/android0/functions
-echo "1" >  /sys/class/android_usb/android0/enable
+cd /sys/kernel/config/usb_gadget
 
-sleep 4
+[ -d adb ] && /usr/bin/android-gadget-cleanup || true
+
+mkdir adb
+cd adb
+
+mkdir configs/c.1
+mkdir functions/ffs.usb0
+mkdir strings/0x409
+mkdir configs/c.1/strings/0x409
+echo -n "$vendor" > idVendor
+echo -n "$product" > idProduct
+echo "$serial" > strings/0x409/serialnumber
+echo "$manufacturer" > strings/0x409/manufacturer
+echo "$model" > strings/0x409/product
+echo "Conf 1" > configs/c.1/strings/0x409/configuration
+ln -s functions/ffs.usb0 configs/c.1
+
+mkdir -p /dev/usb-ffs/adb
+mount -t functionfs usb0 /dev/usb-ffs/adb
