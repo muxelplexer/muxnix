@@ -1,10 +1,4 @@
-SRCREV = "8c42f534d7e1956192ef8457fae884469f60ff13"
-SRC_URI = "git://source.denx.de/u-boot/u-boot.git;protocol=https;branch=master \
-           file://0001-config-adapt-to-muxnix-needs.patch \
-           file://0002-config-rk3576-switch-to-upstream-luckfox-dt.patch \
-           file://fragment.cfg \
-           file://usb.cfg \
-           file://logging.cfg \
-           "
+SRCREV = "287a1d3a7911fc6e22a8a4dd1dcecb4adfdb1795"
+SRC_URI = "git://github.com/muxelplexer/u-boot.git;protocol=https;branch=muxnix"
 FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:"
 
