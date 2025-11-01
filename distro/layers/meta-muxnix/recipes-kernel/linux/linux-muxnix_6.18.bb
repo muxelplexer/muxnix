@@ -32,8 +32,8 @@ LINUX_VERSION_EXTENSION:append = "-muxnix"
 # Modify SRCREV to a different commit hash in a copy of this recipe to
 # build a different release of the Linux kernel.
 # tag: v4.2 64291f7db5bd8150a74ad2036f1037e6a0428df2
-SRCREV = "940b8a65dc9e6f0b96263f8e869add308852b8b2"
+SRCREV = "3bc0f6886b42e42183ff583bf3bd6e63d4205154"
 
-PV = "${LINUX_VERSION}-rc2"
+PV = "${LINUX_VERSION}-rc3"
 COMPATIBLE_MACHINE = "(^$)"
 COMPATIBLE_MACHINE:luckfox-omni3576 = "luckfox-omni3576"
