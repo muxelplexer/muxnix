@@ -9,6 +9,7 @@ steps:
     image: muxelplexer/build-images
     pull: true
     volumes:
-      - /etc/woodpecker/sstate-cache/:/workdir/build/sstate-cache/
+      - yocto-sstate-cache:/workdir/build/sstate-cache/
+      - yocto-downloads:/workdir/build/downloads/
     commands:
       - ./scripts/ci_build.sh
