@@ -1,0 +1,22 @@
+From 7952e8a6acf9142a67c2aa13b0f75d88d67fe1a2 Mon Sep 17 00:00:00 2001
+From: Sebastian Muxel <sebastian@muxel.dev>
+Date: Fri, 20 Feb 2026 00:01:25 +0100
+Subject: [PATCH] fix: do not error on discarded qualifiers
+
+Signed-off-by: Sebastian Muxel <sebastian@muxel.dev>
+---
+ meson.build | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/meson.build b/meson.build
+index 238b935372..bbb6d14d8f 100644
+--- a/meson.build
++++ b/meson.build
+@@ -385,7 +385,6 @@ possible_common_cc_flags = [
+         '-Wdate-time',
+         '-Wendif-labels',
+         '-Werror=bool-compare',
+-        '-Werror=discarded-qualifiers',
+         '-Werror=flex-array-member-not-at-end',
+         '-Werror=format=2',
+         '-Werror=format-signedness',
