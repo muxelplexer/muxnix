@@ -9,7 +9,7 @@ SRC_URI = "git://github.com/muxelplexer/aic8800;protocol=https;branch=yocto_buil
            file://aic8800_fdrv.conf \
            "
 LIC_FILES_CHKSUM = "file://LICENSE;md5=1ebbd3e34237af26da5dc08a4e440464"
-SRCREV = "5c9041cc62954433169c633b98e5b1aa0af0d4ad"
+SRCREV = "80ef31ec91c6446be01016d1c0da584eaa05783c"
 
 S = "${UNPACKDIR}/${PN}-${PV}"
 MODULES_MODULE_SYMVERS_LOCATION = "src/SDIO/driver_fw/driver/aic8800"
