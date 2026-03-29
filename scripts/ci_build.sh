@@ -11,6 +11,11 @@ function build_image()
     export DL_DIR="/workdir/muxnix/build/downloads"
     export SSTATE_DIR="/workdir/muxnix/build/sstate-cache"
     source ./distro/layers/openembedded-core/oe-init-build-env
+    cat >> conf/local.conf << 'EOF'
+BB_HASHSERVE = ""
+BB_SIGNATURE_HANDLER = "OEBasicHash"
+SSTATE_MIRRORS += "file://.* https://sstate.muxel.dev/PATH;downloadfilename=PATH"
+EOF
     bitbake core-image-minimal
 }
 
