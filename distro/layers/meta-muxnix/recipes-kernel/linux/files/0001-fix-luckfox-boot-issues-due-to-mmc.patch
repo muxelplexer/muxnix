@@ -1,0 +1,30 @@
+From 08c3b9a94afcf88cba1c89a2ced0d922321fee57 Mon Sep 17 00:00:00 2001
+From: OpenEmbedded <oe.patch@oe>
+Date: Fri, 20 Feb 2026 22:36:47 +0100
+Subject: [PATCH] fix: luckfox: boot issues due to mmc
+
+Signed-off-by: OpenEmbedded <oe.patch@oe>
+---
+ arch/arm64/boot/dts/rockchip/rk3576-luckfox-core3576.dtsi | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk3576-luckfox-core3576.dtsi b/arch/arm64/boot/dts/rockchip/rk3576-luckfox-core3576.dtsi
+index c2a998eff189..8cf0e8854086 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3576-luckfox-core3576.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3576-luckfox-core3576.dtsi
+@@ -699,13 +699,14 @@ &saradc {
+ &sdhci {
+ 	bus-width = <8>;
+ 	full-pwr-cycle-in-suspend;
++	/delete-property/ supports-cqe;  /* Add this line */
+ 	mmc-hs400-1_8v;
+ 	mmc-hs400-enhanced-strobe;
+ 	no-sd;
+ 	no-sdio;
+ 	non-removable;
+ 	vmmc-supply = <&vcc_3v3_s3>;
+-	vqmmc-supply = <&vccio_sd_s0>;
++	vqmmc-supply = <&vcc_1v8_s3>;
+ 	status = "okay";
+ };
+ 
