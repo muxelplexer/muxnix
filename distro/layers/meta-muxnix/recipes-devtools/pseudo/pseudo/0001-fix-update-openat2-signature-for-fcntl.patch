@@ -1,0 +1,45 @@
+From c705abfcb69cef7f4578ed11a3e8dca55b393f59 Mon Sep 17 00:00:00 2001
+From: Sebastian Muxel <sebastian@muxel.dev>
+Date: Thu, 19 Feb 2026 21:59:38 +0100
+Subject: [PATCH] fix: update openat2 signature for fcntl
+
+Signed-off-by: Sebastian Muxel <sebastian@muxel.dev>
+---
+ makewrappers                       | 2 +-
+ ports/linux/openat2/guts/openat2.c | 2 +-
+ ports/linux/openat2/wrapfuncs.in   | 2 +-
+ 3 files changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/makewrappers b/makewrappers
+index 326f70e..6228023 100755
+--- a/makewrappers
++++ b/makewrappers
+@@ -210,7 +210,7 @@ typedata = {
+   'ssize_t': { 'format': '%ld', 'value': '(long) rc' },
+   'struct group *': { 'format': '%p', 'value': '(void *) rc' },
+   'struct passwd *': { 'format': '%p', 'value': '(void *) rc' },
+-  'struct open_how *': { 'format': '%p', 'value': '(void *) rc' },
++  'const struct open_how *': { 'format': '%p', 'value': '(void *) rc' },
+   'uid_t': { 'format': '%ld', 'value': ' (long) rc' },
+   'void *': { 'format': '%p', 'value': 'rc' },
+   'void': { 'format': 'void%s', 'value': '""' },
+diff --git a/ports/linux/openat2/guts/openat2.c b/ports/linux/openat2/guts/openat2.c
+index da01b31..366fb95 100644
+--- a/ports/linux/openat2/guts/openat2.c
++++ b/ports/linux/openat2/guts/openat2.c
+@@ -4,7 +4,7 @@
+  *
+  * SPDX-License-Identifier: LGPL-2.1-only
+  *
+- * int openat2(int dirfd, const char *path, struct open_how *how, size_t size)
++ * int openat2(int dirfd, const char *path, const struct open_how *how, size_t size)
+  *	int rc = -1;
+  */
+ 
+diff --git a/ports/linux/openat2/wrapfuncs.in b/ports/linux/openat2/wrapfuncs.in
+index 96ae8a7..2f1e716 100644
+--- a/ports/linux/openat2/wrapfuncs.in
++++ b/ports/linux/openat2/wrapfuncs.in
+@@ -1 +1 @@
+-int openat2(int dirfd, const char *path, struct open_how *how, size_t size);
++int openat2(int dirfd, const char *path, const struct open_how *how, size_t size);
