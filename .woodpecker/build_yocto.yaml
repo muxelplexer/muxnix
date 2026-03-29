@@ -8,7 +8,6 @@ steps:
   - name: build-yocto
     image: muxelplexer/build-images
     pull: true
-    timeout: 360
     volumes:
       - /opt/woodpecker/sstate-cache:/workdir/build/sstate-cache/
       - /opt/woodpecker/downloads:/workdir/build/downloads/
