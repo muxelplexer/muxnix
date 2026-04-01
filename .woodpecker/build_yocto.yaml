@@ -1,9 +1,21 @@
+# .woodpecker/build_yocto.yaml
+#
+# Branch builds → Forgejo Generic Packages (downloadable per-branch)
+# Main builds    → Forgejo Releases (permanent, versioned)
+# Tag builds     → Forgejo Releases (permanent, versioned)
+#
+# Required Woodpecker secret:
+#   forgejo_token — Forgejo API token with package:write + repo:write
+
 workspace:
   base: /workdir
   path: muxnix/
+
 when:
   - event: push
   - event: manual
+  - event: tag
+
 steps:
   - name: build-yocto
     image: muxelplexer/build-images
@@ -13,3 +25,53 @@ steps:
       - /opt/woodpecker/downloads:/workdir/muxnix/build/downloads/
     commands:
       - ./scripts/ci_build.sh
+
+  - name: collect-artifacts
+    image: muxelplexer/build-images
+    commands:
+      - mkdir -p /workdir/muxnix/artifacts
+      - |
+        find /workdir/muxnix/build/tmp/deploy/images/luckfox-omni3576/ \
+          \( -name '*.wic' -o -name '*.wic.bmap' -o -name '*.sdcard' -o -name '*.ext4' \
+             -o -name '*.bin' -o -name '*.dtb' \
+             -o -name 'Image' -o -name 'zImage' \
+             -o -name 'core-image-*.env' \) \
+          -not -name '*.rootfs-*' \
+          -not -name '*.manifest' \
+          -not -name '*.sigdata*' \
+          -not -name '*.siginfo' \
+          -exec cp {} /workdir/muxnix/artifacts/ \;
+      - echo "=== Collected artifacts:"
+      - ls -lh /workdir/muxnix/artifacts/
+
+  # ── Branch builds: publish to Forgejo Generic Packages ──────────────
+  #    Artifacts are stored under: /generic/muxnix/<branch>-<shortsha>/
+  #    Download: curl -O https://muxel.dev/api/packages/muxnix/generic/muxnix/<version>/<file>
+  - name: publish-branch-artifacts
+    image: curlimages/curl:latest
+    environment:
+      FORGEJO_TOKEN:
+        from_secret: forgejo_token
+    commands:
+      - ./scripts/publish_artifacts.sh
+    when:
+      - event: push
+        branch:
+          exclude: [main]
+      - event: manual
+
+  # ── Main & Tag builds: publish to Forgejo Releases ─────────────────
+  - name: publish-release
+    image: codeberg.org/woodpecker-plugins/gitea-release:latest
+    settings:
+      base_url: http://git:3001
+      files:
+        - "/workdir/muxnix/artifacts/*"
+      api_key:
+        from_secret: forgejo_token
+      title: "${CI_COMMIT_TAG:-build-${CI_COMMIT_SHA:0:8}}"
+      note: "Automated CI build from ${CI_COMMIT_BRANCH}"
+    when:
+      - event: push
+        branch: [main]
+      - event: tag
