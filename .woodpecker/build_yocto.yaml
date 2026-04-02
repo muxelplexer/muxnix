@@ -62,12 +62,12 @@ steps:
 
   # ── Main & Tag builds: publish to Forgejo Releases ─────────────────
   - name: publish-release
-    image: codeberg.org/woodpecker-plugins/gitea-release:latest
+    image: codeberg.org/woodpecker-plugins/release:latest
     settings:
-      base_url: http://git:3001
+      forgejo-url: http://git:3001
       files:
         - "/workdir/muxnix/artifacts/*"
-      api_key:
+      token:
         from_secret: forgejo_token
       title: "${CI_COMMIT_TAG:-build-${CI_COMMIT_SHA:0:8}}"
       note: "Automated CI build from ${CI_COMMIT_BRANCH}"
