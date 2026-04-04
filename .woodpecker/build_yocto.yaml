@@ -60,7 +60,19 @@ steps:
           exclude: [main]
       - event: manual
 
-  # ── Main & Tag builds: publish to Forgejo Releases ─────────────────
+  # ── Main builds: publish as Forgejo pre-release ───────────────────
+  - name: publish-main-release
+    image: curlimages/curl:latest
+    environment:
+      FORGEJO_TOKEN:
+        from_secret: forgejo_token
+    commands:
+      - ./scripts/publish_main_release.sh
+    when:
+      - event: push
+        branch: [main]
+
+  # ── Tag builds: publish to Forgejo Releases ───────────────────────
   - name: publish-release
     image: codeberg.org/woodpecker-plugins/release:latest
     settings:
@@ -69,9 +81,7 @@ steps:
         - "/workdir/muxnix/artifacts/*"
       token:
         from_secret: forgejo_token
-      title: "${CI_COMMIT_TAG:-build-${CI_COMMIT_SHA:0:8}}"
+      title: "${CI_COMMIT_TAG}"
       note: "Automated CI build from ${CI_COMMIT_BRANCH}"
     when:
-      - event: push
-        branch: [main]
       - event: tag
