@@ -32,7 +32,7 @@ steps:
       - mkdir -p /workdir/muxnix/artifacts
       - |
         find /workdir/muxnix/build/tmp/deploy/images/luckfox-omni3576/ \
-          \( -name '*.wic' -o -name '*.wic.bmap' -o -name '*.sdcard' -o -name '*.ext4' \
+          \( -name '*.wic.xz' -o -name '*.wic.bmap' -o -name '*.sdcard' -o -name '*.ext4' \
              -o -name '*.bin' -o -name '*.dtb' \
              -o -name 'Image' -o -name 'zImage' \
              -o -name 'core-image-*.env' \) \
