@@ -19,7 +19,6 @@ when:
 steps:
   - name: build-yocto
     image: muxelplexer/build-images
-    pull: true
     volumes:
       - /opt/woodpecker/sstate-cache:/workdir/muxnix/build/sstate-cache/
       - /opt/woodpecker/downloads:/workdir/muxnix/build/downloads/
