@@ -15,7 +15,7 @@ require recipes-kernel/linux/linux-yocto.inc
 
 # Override SRC_URI in a copy of this recipe to point at a different source
 # tree if you do not want to build from Linus' tree.
-SRC_URI = "git://github.com/muxelplexer/linux.git;protocol=https;nocheckout=1;branch=muxnix \
+SRC_URI = "git://git.muxel.dev/muxnix/linux.git;protocol=https;nocheckout=1;branch=muxnix \
            file://panfrost-drm.cfg \
            file://0001-fix-luckfox-boot-issues-due-to-mmc.patch \
            "
