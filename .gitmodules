@@ -19,11 +19,11 @@
 	branch = yocto-muxnix
 [submodule "distro/sources/sys/u-boot"]
 	path = distro/sources/sys/u-boot
-	url = https://github.com/muxelplexer/u-boot.git
+	url = https://git.muxel.dev/muxnix/u-boot.git
 	branch = muxnix
 [submodule "distro/sources/sys/aic8800"]
 	path = distro/sources/sys/aic8800
-	url = https://github.com/muxelplexer/aic8800.git
+	url = https://git.muxel.dev/muxnix/aic8800.git
 	branch = yocto_build
 [submodule "distro/sources/app/fastfetch"]
 	path = distro/sources/app/fastfetch
