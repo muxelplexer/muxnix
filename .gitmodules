@@ -13,3 +13,19 @@
 [submodule "distro/layers/meta-openembedded"]
 	path = distro/layers/meta-openembedded
 	url = https://git.muxel.dev/muxelplexer/meta-openembedded
+[submodule "distro/sources/sys/linux"]
+	path = distro/sources/sys/linux
+	url = https://git.muxel.dev/muxnix/linux.git
+	branch = yocto-muxnix
+[submodule "distro/sources/sys/u-boot"]
+	path = distro/sources/sys/u-boot
+	url = https://github.com/muxelplexer/u-boot.git
+	branch = muxnix
+[submodule "distro/sources/sys/aic8800"]
+	path = distro/sources/sys/aic8800
+	url = https://github.com/muxelplexer/aic8800.git
+	branch = yocto_build
+[submodule "distro/sources/app/fastfetch"]
+	path = distro/sources/app/fastfetch
+	url = https://github.com/fastfetch-cli/fastfetch.git
+	branch = master
