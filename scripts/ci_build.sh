@@ -22,7 +22,7 @@ BB_HASHSERVE = "ws://10.90.0.1:8687"
 BB_HASHSERVE_UPSTREAM = "wss://sstate.muxel.dev/hashserv"
 EOF
 
-    bitbake core-image-minimal
+    bitbake core-image-minimal-dev
 }
 
 build_image
