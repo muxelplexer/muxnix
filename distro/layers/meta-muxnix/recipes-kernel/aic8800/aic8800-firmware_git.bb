@@ -2,10 +2,12 @@ SUMMARY = "Firmware for the AIC8800 WiFi Chip-Set"
 DESCRIPTION = "${SUMMARY}"
 LICENSE = "GPL-3.0-only"
 
-SRC_URI = "git://github.com/muxelplexer/aic8800;protocol=https;branch=yocto_build"
+inherit externalsrc
+
+EXTERNALSRC = "${MUXNIX_SYS_SOURCES}/aic8800"
+EXTERNALSRC_BUILD = "${WORKDIR}/${BPN}-${PV}"
+
 LIC_FILES_CHKSUM = "file://LICENSE;md5=1ebbd3e34237af26da5dc08a4e440464"
-SRCREV = "5c9041cc62954433169c633b98e5b1aa0af0d4ad"
-S = "${UNPACKDIR}/${PN}-${PV}"
 # Can be any of:
 #  - aic8800
 #  - aic8800D80

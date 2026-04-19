@@ -12,12 +12,12 @@ SUMMARY = "Muxnix Linux Kernel"
 #              recipe.
 inherit kernel
 require recipes-kernel/linux/linux-yocto.inc
+inherit externalsrc
 
-# Override SRC_URI in a copy of this recipe to point at a different source
-# tree if you do not want to build from Linus' tree.
-SRC_URI = "git://git.muxel.dev/muxnix/linux.git;protocol=https;nocheckout=1;branch=muxnix \
-           file://panfrost-drm.cfg \
-           file://0001-fix-luckfox-boot-issues-due-to-mmc.patch \
+EXTERNALSRC = "${MUXNIX_SYS_SOURCES}/linux"
+EXTERNALSRC_BUILD = "${WORKDIR}/${BPN}-${PV}"
+
+SRC_URI = "file://panfrost-drm.cfg \
            "
 KERNEL_FEATURES:remove = "bsp/rockchip/remove-non-rockchip-arch-arm64.scc"
 
@@ -32,10 +32,7 @@ do_kernel_configcheck[noexec] = "1"
 LINUX_VERSION ?= "6.19.3"
 LINUX_VERSION_EXTENSION:append = "-muxnix"
 
-# Modify SRCREV to a different commit hash in a copy of this recipe to
-# build a different release of the Linux kernel.
-# tag: v4.2 64291f7db5bd8150a74ad2036f1037e6a0428df2
-SRCREV = "179fd452e192c52ea9be4078224a3eb7740e3f85"
+# SRCREV is determined by the git submodule checkout
 
 PV = "${LINUX_VERSION}"
 COMPATIBLE_MACHINE = "(^$)"

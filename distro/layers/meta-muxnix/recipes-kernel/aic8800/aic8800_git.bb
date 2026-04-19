@@ -3,15 +3,15 @@ DESCRIPTION = "${SUMMARY}"
 LICENSE = "GPL-3.0-only"
 
 inherit module pkgconfig
+inherit externalsrc
 
-SRC_URI = "git://github.com/muxelplexer/aic8800;protocol=https;branch=yocto_build \
-           file://aic8800_bsp.conf \
+EXTERNALSRC = "${MUXNIX_SYS_SOURCES}/aic8800"
+EXTERNALSRC_BUILD = "${WORKDIR}/${BPN}-${PV}"
+
+SRC_URI = "file://aic8800_bsp.conf \
            file://aic8800_fdrv.conf \
            "
 LIC_FILES_CHKSUM = "file://LICENSE;md5=1ebbd3e34237af26da5dc08a4e440464"
-SRCREV = "80ef31ec91c6446be01016d1c0da584eaa05783c"
-
-S = "${UNPACKDIR}/${PN}-${PV}"
 MODULES_MODULE_SYMVERS_LOCATION = "src/SDIO/driver_fw/driver/aic8800"
 
 EXTRA_OEMAKE:append = "\

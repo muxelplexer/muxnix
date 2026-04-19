@@ -13,12 +13,11 @@ BUGTRACKER = "https://github.com/fastfetch-cli/fastfetch/issues"
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
 
-# Specify the source URI and its checksum for validation.
-SRC_URI = "git://github.com/fastfetch-cli/fastfetch;protocol=https;branch=master"
-SRCREV = "4098cf51b35c19a102e5df51f5e14d6b80902404"
-
-# Inherit the cmake class for building the project.
 inherit cmake
+inherit externalsrc
+
+EXTERNALSRC = "${MUXNIX_APP_SOURCES}/fastfetch"
+EXTERNALSRC_BUILD = "${WORKDIR}/${BPN}-${PV}"
 
 do_install(){
     install -d ${D}${bindir}
