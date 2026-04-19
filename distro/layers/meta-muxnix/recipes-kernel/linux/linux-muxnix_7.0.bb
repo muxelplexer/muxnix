@@ -27,9 +27,10 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=6bc538ed5bd9a7fc9398086aedcd7e46"
 KBUILD_DEFCONFIG = "luckfox_omni3576_defconfig"
 KCONFIG_MODE = "--alldefconfig"
 do_kernel_configcheck[noexec] = "1"
+KERNEL_VERSION_SANITY_SKIP = "1"
 
 
-LINUX_VERSION ?= "6.19.3"
+LINUX_VERSION ?= "7.0"
 LINUX_VERSION_EXTENSION:append = "-muxnix"
 
 # SRCREV is determined by the git submodule checkout
